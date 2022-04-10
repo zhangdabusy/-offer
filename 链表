@@ -1,0 +1,67 @@
+# 链表
+* JZ6 从尾到头打印链表
+```
+#直接添加入一个列表，采用[]的反转操作
+class Solution:
+    def printListFromTailToHead(self, listNode: ListNode) -> List[int]:
+        head=listNode
+        li=[]
+        while (head):
+            li.append(head.val)
+            head=head.next
+        return li[::-1]
+```
+* JZ76 删除链表中重复的结点
+
+```
+#方法1：迭代法，要设置虚拟节点；方法2：递归法，直接递归
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+#
+# 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+#
+# 
+# @param pHead ListNode类 
+# @return ListNode类
+#
+# class Solution:
+#     def deleteDuplication(self , pHead: ListNode) -> ListNode:
+#         # write code here
+#         temp=pHead
+#         second=ListNode(-1)
+#         second_temp=second
+        
+#         while temp!=None:
+#             if temp.next==None or temp.val!=temp.next.val:
+#                 second.next=temp
+#                 second=second.next
+#             else:
+#                 while temp.next!=None and temp.val==temp.next.val:
+#                     temp=temp.next
+                    
+#             temp=temp.next
+            
+#         second.next=None
+        
+#         return second_temp.next
+class Solution:
+    def deleteDuplication(self , pHead: ListNode) -> ListNode:
+        # write code here
+        if pHead == None or pHead.next == None:
+            return pHead
+        if pHead.val != pHead.next.val:
+            pHead.next = self.deleteDuplication(pHead.next)
+            return pHead
+        else:
+            tmp = pHead
+            while tmp!=None and tmp.val == pHead.val:
+                tmp =tmp.next
+            return self.deleteDuplication(tmp)
+```
+
+
+
+
+
